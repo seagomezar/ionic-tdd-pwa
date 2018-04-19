@@ -18,7 +18,7 @@ export class HomePage {
   }
 
   addHolding(): void {
-    this.navCtrl.push('addHoldingPage');
+    this.navCtrl.push('AddHoldingPage');
   }
 
   goToCryptonator(): void {
