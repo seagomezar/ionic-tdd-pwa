@@ -12,6 +12,7 @@ import { HoldingsProvider } from '../../providers/holdings/holdings';
 })
 export class AddHoldingPage {
 
+  private noConnection: boolean = false;
   private cryptoUnavailable: boolean = false;
   private checkingValidity: boolean = false;
   private cryptoCode: string;
@@ -23,6 +24,7 @@ export class AddHoldingPage {
 
   addHolding(): void {
     this.cryptoUnavailable = false;
+    this.noConnection = false;
     this.checkingValidity = true;
 
     let holding = {
@@ -43,6 +45,7 @@ export class AddHoldingPage {
       }
 
     }, err => {
+      this.noConnection = true;
       this.checkingValidity = false;
     });
   }
