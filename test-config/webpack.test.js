@@ -47,3 +47,4 @@ module.exports = {
 
 function root(localPath) {
   return path.resolve(__dirname, localPath);
+}
