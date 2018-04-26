@@ -75,7 +75,8 @@ describe('Home Page', function() {
             crypto: comp.cryptoCode,
             currency: comp.displayCurrency,
             amount: comp.amountHolding
-        }
+        };
+        
         comp.addHolding();
         expect(comp.holdingsProvider.verifyHoldings).toHaveBeenCalledWith(holding);
         expect(comp.holdingsProvider.addHolding).not.toHaveBeenCalled();
@@ -95,7 +96,5 @@ describe('Home Page', function() {
         comp.addHolding();
         expect(comp.noConnection).toBe(true);
     });
-
-
 
 });
