@@ -5,6 +5,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { IonicStorageModule } from '@ionic/storage';
 import { MockBackend } from '@angular/http/testing';
 import { Http, HttpModule, BaseRequestOptions, Response, ResponseOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 
 describe('Provider: Holdings Provider', () => {
@@ -102,23 +104,76 @@ describe('Provider: Holdings Provider', () => {
 
     })));
 
-    it('Debería poder obtener los holdings con refresher', (inject([HoldingsProvider, MockBackend], (holdingsProvider, mockBackend) => {
-        expect(holdingsProvider.holdings[0]).toBeNull;
-        holdingsProvider.addHolding(fakeHolding);
-        expect(holdingsProvider.holdings[0].crypto).toBe('BTC');
-        mockBackend.connections.subscribe((connection) => {
-            connection.mockRespond(new Response(new ResponseOptions({
-              body: [{price: 1000}]
-            })));
-          });
-          const refresher = {
-              complete: function() {}
-          }
-          holdingsProvider.fetchPrices(refresher);
-          //expect(holdingsProvider.holdings[0].value).toBe(1000);
-          expect(holdingsProvider.holdings[0].value).toBe(null);
-
-    })));
+    it("Debería poder obtener los holdings con refresher",
+    inject([HoldingsProvider, MockBackend], (holdingsProvider, mockBackend) => {
+      expect(holdingsProvider.holdings[0]).toBeNull;
+      holdingsProvider.addHolding(fakeHolding);
+      expect(holdingsProvider.holdings[0].crypto).toBe("BTC");
+ 
+      const mockAnswer = [
+        {
+          ticker: {
+            base: "BTC",
+            target: "USD",
+            price: 443,
+            volume: "31720.1493969300",
+            change: "0.3766203596"
+          },
+          timestamp: 1399490941,
+          success: true,
+          error: ""
+        }
+      ];
+ 
+      spyOn(Observable.prototype, "pipe").and.returnValue(
+        Observable.of(mockAnswer)
+      );
+ 
+      mockBackend.connections.subscribe(connection => {
+        connection.mockRespond(
+          new Response(
+            new ResponseOptions({
+              body: [{ price: 1000 }]
+            })
+          )
+        );
+      });
+      const refresher = {
+        complete: function() {}
+      };
+      holdingsProvider.fetchPrices(refresher);
+      //expect(holdingsProvider.holdings[0].value).toBe(1000);
+      expect(holdingsProvider.holdings[0].value).toBe(443);
+    })
+  );
+ 
+  it("Debería generar error al obtener los holdings con refresher",
+    inject([HoldingsProvider, MockBackend], (holdingsProvider, mockBackend) => {
+      expect(holdingsProvider.holdings[0]).toBeNull;
+      holdingsProvider.addHolding(fakeHolding);
+      expect(holdingsProvider.holdings[0].crypto).toBe("BTC");
+ 
+      spyOn(Observable.prototype, "pipe").and.returnValue(
+        Observable.throw("Error")
+      );
+ 
+      mockBackend.connections.subscribe(connection => {
+        connection.mockRespond(
+          new Response(
+            new ResponseOptions({
+              body: [{ price: 1000 }]
+            })
+          )
+        );
+      });
+      const refresher = {
+        complete: function() {}
+      };
+      holdingsProvider.fetchPrices(refresher);
+      //expect(holdingsProvider.holdings[0].value).toBe(1000);
+      expect(holdingsProvider.pricesUnavailable).toBe(true);
+    })
+  );
 
 
 });
