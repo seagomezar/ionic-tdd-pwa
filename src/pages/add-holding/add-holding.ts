@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HoldingsProvider } from '../../providers/holdings/holdings';
 
 
@@ -12,14 +12,14 @@ import { HoldingsProvider } from '../../providers/holdings/holdings';
 })
 export class AddHoldingPage {
 
-  private noConnection: boolean = false;
+  public noConnection: boolean = false;
   private cryptoUnavailable: boolean = false;
   private checkingValidity: boolean = false;
-  private cryptoCode: string;
-  private displayCurrency: string;
-  private amountHolding;
+  public cryptoCode: string;
+  public displayCurrency: string;
+  public amountHolding: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private holdingsProvider: HoldingsProvider) {
+  constructor(public navCtrl: NavController, public holdingsProvider: HoldingsProvider) {
   }
 
   addHolding(): void {

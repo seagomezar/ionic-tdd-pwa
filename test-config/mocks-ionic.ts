@@ -118,4 +118,6 @@ export class DeepLinkerMock {
 export class HoldingsProviderMock {
   loadHoldings(){}
   fetchPrices(refresher){}
+  verifyHoldings(holding){}
+  addHolding(holding){}
 }
