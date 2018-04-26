@@ -20,7 +20,6 @@ export class HoldingsProvider {
   public pricesUnavailable: boolean = false;
 
   constructor(public http: HttpClient, private storage: Storage) {
-    console.log('Hello HoldingsProvider Provider');
   }
 
   addHolding(holding: Holding): void {

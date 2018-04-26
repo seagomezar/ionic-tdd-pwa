@@ -113,3 +113,9 @@ export class NavMock {
 export class DeepLinkerMock {
 
 }
+
+
+export class HoldingsProviderMock {
+  loadHoldings(){}
+  fetchPrices(refresher){}
+}

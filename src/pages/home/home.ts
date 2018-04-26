@@ -9,7 +9,7 @@ import { HoldingsProvider } from '../../providers/holdings/holdings';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private holdingsProvider: HoldingsProvider) {
+  constructor(public navCtrl: NavController, public holdingsProvider: HoldingsProvider) {
 
   }
 
