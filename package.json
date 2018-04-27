@@ -1,7 +1,7 @@
 {
-  "name": "ionic-tdd-pwa",
+  "name": "angular-week-crypto-2018",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Sebastian Gomez",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -60,5 +60,5 @@
     "ts-node": "^4.1.0",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "This is the oficial app for the workshop in the end of the #AngularWeek 2018 - Medellín. We cover Ionic + Test Driven Development + Progressive Web Applications"
 }
