@@ -9,39 +9,49 @@
 
 <ion-content padding>
   <div class="message">
-
-    <p>To add a holding you will need to supply the appropriate symbol for the cryptocurrency, and the symbol for the currency
-      you would like to display the values in.</p>
-
+    <p>Para agregar una conversión, debes proporcionar el símbolo apropiado para la criptomoneda y el símbolo de la moneda en
+      la que deseas mostrar los valores.</p>
     <p>
-      <strong>Note:</strong> Listed prices are estimated. Rates may vary significantly across different exchanges.</p>
+      <strong>Nota:</strong> Los precios listados son estimados. Las tasas pueden variar significativamente entre diferentes intercambios</p>
 
   </div>
- 
+
   <ion-list>
     <ion-item>
       <ion-label stacked>Crypto Code</ion-label>
-      <ion-input [(ngModel)]="cryptoCode" placeholder="(e.g. BTC, LTC, ETH)" type="text"></ion-input>
+      <ion-select [(ngModel)]="cryptoCode" placeholder="Selecciona una Cryptomoneda">
+        <ion-option value="BTC">BitCoin</ion-option>
+        <ion-option value="LTC">LiteCoin</ion-option>
+        <ion-option value="ETH">Ethereum</ion-option>
+        <ion-option value="DOGE">DogeCoin</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Display Currency Code</ion-label>
-      <ion-input [(ngModel)]="displayCurrency" placeholder="(e.g. USD, CAD, AUD)" type="text"></ion-input>
+      <ion-label stacked>Currency Code</ion-label>
+      <ion-select [(ngModel)]="displayCurrency" placeholder="Selecciona una Moneda">
+          <ion-option value="USD">Dolar</ion-option>
+          <ion-option value="EUR">Euro</ion-option>
+          <ion-option value="CAD">Dolar Canadiense</ion-option>
+          <ion-option value="AUD">Dola Australiano</ion-option>
+          <ion-option value="RUR">Rublo Ruso</ion-option>
+        </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Amount Holding</ion-label>
+      <ion-label stacked>Cantidad</ion-label>
       <ion-input [(ngModel)]="amountHolding" type="number"></ion-input>
     </ion-item>
   </ion-list>
 
-  <button ion-button full (click)="addHolding()" [disabled]="checkingValidity">Add Holding
+  <button ion-button full (click)="validateInputs() && addHolding()" [disabled]="checkingValidity" color="secondary">Añadir conversión
     <ion-spinner color="light" *ngIf="checkingValidity"></ion-spinner>
   </button>
-  <p class="error-message" *ngIf="cryptoUnavailable"> Sorry, that combination is not currently available. Make sure to only include a single code.</p>
-  <p class="error-message" *ngIf="noConnection"> Sorry, you need to be online to add new holdings</p>
+  <p class="error-message" *ngIf="invalidInput"> No te olvides llenar todos los campos</p>
+  <p class="error-message" *ngIf="cryptoUnavailable"> Lo sentimos, la combinación que pusiste no se encuentra disponible.</p>
+  <p class="error-message" *ngIf="noConnection"> Lo sentimos, debes de estar conectado a la red para añadir nuevas conversiones.</p>
 </ion-content>
 
 <ion-footer padding>
   <p>
-    <strong> Note: </strong> This web application allows you to track your Cryptocurrency without creating an account. This means
-    that all data is stored locally, and may be permanently deleted without warning.</p>
+    <strong> Nota: </strong> Esta aplicación web te permite rastrear tus conversiones de cryptomonedas sin crear una cuenta. Esto
+    significa que todos los datos se almacenan localmente y pueden eliminarse permanentemente sin previo aviso.</p>
 </ion-footer>

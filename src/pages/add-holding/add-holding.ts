@@ -18,11 +18,21 @@ export class AddHoldingPage {
   public cryptoCode: string;
   public displayCurrency: string;
   public amountHolding: number;
+  public invalidInput: boolean = false;;
 
   constructor(public navCtrl: NavController, public holdingsProvider: HoldingsProvider) {
   }
 
+  validateInputs(): boolean {
+    if(this.cryptoCode && this.displayCurrency && this.amountHolding) {
+      return true;
+    }
+    this.invalidInput = true;
+    return false;
+  }
+
   addHolding(): void {
+    this.invalidInput = false;
     this.cryptoUnavailable = false;
     this.noConnection = false;
     this.checkingValidity = true;
