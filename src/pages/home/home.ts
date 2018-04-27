@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { HoldingsProvider } from '../../providers/holdings/holdings';
 
+import { CurrencyPipe } from '@angular/common';
+
 @IonicPage()
 @Component({
   selector: 'page-home',
