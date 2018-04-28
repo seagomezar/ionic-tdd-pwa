@@ -18,7 +18,7 @@ export class AddHoldingPage {
   public cryptoCode: string;
   public displayCurrency: string;
   public amountHolding: number;
-  public invalidInput: boolean = false;;
+  public invalidInput: boolean = false;
 
   constructor(public navCtrl: NavController, public holdingsProvider: HoldingsProvider) {
   }
