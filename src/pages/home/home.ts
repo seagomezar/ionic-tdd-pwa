@@ -15,7 +15,7 @@ export class HomePage {
 
   }
 
-  ionicViewDidLoad(): void {
+  ionViewDidEnter(): void {
     this.holdingsProvider.loadHoldings();
   }
 

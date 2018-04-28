@@ -31,7 +31,7 @@ describe('Home Page', function() {
     beforeEach(()=>{
         fixture = TestBed.createComponent(HomePage);
         comp = fixture.componentInstance;
-        comp.ionicViewDidLoad();
+        comp.ionViewDidEnter();
     });
 
     afterEach(() => {

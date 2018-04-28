@@ -40,6 +40,7 @@ export class HoldingsProvider {
 
   loadHoldings(): void {
     this.storage.get('cryptoHoldings').then(holdings => {
+      console.log("holdings", holdings);
       if (holdings !== null) {
         this.holdings = holdings;
         this.fetchPrices();
