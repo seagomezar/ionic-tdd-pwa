@@ -34,12 +34,13 @@
           <img src="/assets/imgs/coin-icons/{{holding.crypto | lowercase}}.png" width="16px" height="16px"/><strong> {{holding.crypto}} <ion-icon ios="ios-swap" md="md-swap"></ion-icon> {{holding.currency}} <img src="/assets/imgs/coin-icons/{{holding.currency | lowercase}}.png" width="16px" height="16px"/> </strong></p>
         <p class="amount"><strong>Coins: </strong> {{holding.amount}} <strong>Value:</strong> {{holding.value | currency}}</p>
         <p *ngIf="holding.value > 0" class="value">{{ (holding.amount*holding.value) | currency}}</p>
+
+      </ion-item>
         <ion-item-options>
           <button ion-button icon-only color="danger" (click)="holdingsProvider.removeHolding(holding)">
             <ion-icon name="trash"></ion-icon>
           </button>
         </ion-item-options>
-      </ion-item>
     </ion-item-sliding>
   </ion-list>
 
